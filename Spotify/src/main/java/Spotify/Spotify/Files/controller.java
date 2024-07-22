@@ -16,21 +16,36 @@ public class controller {
 
     @GetMapping(path="artist/{id}")
     public String artists(@PathVariable("id") String id) throws JsonProcessingException {
+        token = System.getProperty("spotify.api.token");
+
         return service.getArtistNameByID(id,token);
     }
 
     @GetMapping(path="song/{id}")
     public String songs(@PathVariable("id") String id) throws JsonProcessingException {
+        token = System.getProperty("spotify.api.token");
+
         return service.getArtistTopSongByID(id,token);
     }
     @GetMapping(path="artist/search/{artist}")
     public String search(@PathVariable("artist") String artist) throws JsonProcessingException {
+        token = System.getProperty("spotify.api.token");
+
         return service.getArtistIdBySearch(artist,token);
     }
     @GetMapping(path="song/artist/search/{artist}")
     public String searchArtist(@PathVariable("artist") String artist) throws JsonProcessingException {
+        token = System.getProperty("spotify.api.token");
         String artist_id = service.getArtistIdBySearch(artist,token);
         return service.getArtistTopSongByID(artist_id, token);
+    }
+    @GetMapping(path = "authorize")
+    public String authorize() {
+        return service.authorize();
+    }
+    @GetMapping("/callback")
+    public String callback(@RequestParam("code") String code) {
+        return service.fetchToken(code);
     }
 
 
