@@ -24,6 +24,7 @@ public class Service {
     @Autowired
             private OAuthTokenFetcher oAuthTokenFetcher;
 
+
     public ResponseEntity<String> generate_response(String url, String token){
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization","Bearer "+token);
