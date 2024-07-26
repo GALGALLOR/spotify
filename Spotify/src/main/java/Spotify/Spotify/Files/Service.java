@@ -23,7 +23,8 @@ public class Service {
     private final RestTemplate restTemplate = new RestTemplate();
     @Autowired
             private OAuthTokenFetcher oAuthTokenFetcher;
-
+    @Autowired
+    private twilioClass twilioClass;
 
     public ResponseEntity<String> generate_response(String url, String token){
         HttpHeaders headers = new HttpHeaders();
@@ -60,10 +61,14 @@ public class Service {
         return path.substring(1,path.length()-1);
         //return root.toPrettyString();
     }
+    public String send_whatsapp(){
+        twilioClass.TwilioClass();
+        return "message sent";
+    }
     public String authorize() {
         String callbackUrl = "http://127.0.0.1:8080/api/callback";
         String authURL = "https://accounts.spotify.com/authorize?client_id=" + client_id + "&response_type=code&redirect_uri=" + callbackUrl;
-
+        // How about we redirect to the url below?
         return "Redirect to the following URL to authorize: <a href='" + authURL+"'>"+authURL+"</a>";
     }
     public String fetchToken(String code) {

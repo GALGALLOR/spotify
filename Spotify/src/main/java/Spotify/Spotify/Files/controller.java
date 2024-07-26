@@ -31,6 +31,10 @@ public class controller {
         }
         return token;
     }
+    @GetMapping(path="whatsapp")
+    public String whatsapp() throws JsonProcessingException {
+        return service.send_whatsapp();
+    }
     @GetMapping(path="artist/{id}")
     public String artists(@PathVariable("id") String id) throws IOException {
         token = getToken();
@@ -56,6 +60,7 @@ public class controller {
     @GetMapping(path = "authorize")
     public String authorize() {
         return service.authorize();
+        //return callback(code); //so that we can dirctly go to the calledback link instead of having to click on a link to confirm
     }
     @GetMapping("/callback")
     public String callback(@RequestParam("code") String code) {
