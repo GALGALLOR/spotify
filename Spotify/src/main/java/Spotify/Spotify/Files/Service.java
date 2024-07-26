@@ -62,8 +62,13 @@ public class Service {
         //return root.toPrettyString();
     }
     public String send_whatsapp(){
-        twilioClass.TwilioClass();
-        return "message sent";
+        twilioClass.send_whatsapp_message();
+        return "whatsapp message sent";
+    }
+    public String send_sms(){
+        //Doesn't work because the Phone number +254 is not verified
+        twilioClass.send_sms();
+        return "sms sent";
     }
     public String authorize() {
         String callbackUrl = "http://127.0.0.1:8080/api/callback";

@@ -35,6 +35,10 @@ public class controller {
     public String whatsapp() throws JsonProcessingException {
         return service.send_whatsapp();
     }
+    @GetMapping(path="sms")
+    public String sms() throws JsonProcessingException {
+        return service.send_sms();
+    }
     @GetMapping(path="artist/{id}")
     public String artists(@PathVariable("id") String id) throws IOException {
         token = getToken();
